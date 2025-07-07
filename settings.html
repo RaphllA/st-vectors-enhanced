@@ -1,372 +1,469 @@
 <div id="vectors_enhanced_container" class="inline-drawer">
-    <div class="inline-drawer-toggle inline-drawer-header">
-        <b>聊天记录超级管理器</b>
-        <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+  <div class="inline-drawer-toggle inline-drawer-header">
+    <b>聊天记录超级管理器</b>
+    <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+  </div>
+  <div class="inline-drawer-content">
+    <!-- 主开关 -->
+    <div
+      class="vectors-enhanced-section"
+      style="padding-bottom: 0.5rem; border-bottom: 2px solid var(--SmartThemeQuoteColor)"
+    >
+      <label
+        class="checkbox_label"
+        for="vectors_master_enabled"
+        title="启用/禁用整个插件的所有功能。禁用时，所有向量化和查询功能都将停止工作。"
+      >
+        <input id="vectors_enhanced_master_enabled" type="checkbox" />
+        <span style="font-weight: bold; color: var(--SmartThemeQuoteColor)">启用聊天记录超级管理器</span>
+      </label>
+      <small style="display: block; margin-top: 0.25rem; color: var(--SmartThemeEmColor)">
+        关闭此开关将禁用插件的所有功能，包括向量化、查询和任务管理
+      </small>
     </div>
-    <div class="inline-drawer-content">
-            <!-- 主开关 -->
-            <div class="vectors-enhanced-section" style="padding-bottom: 0.5rem; border-bottom: 2px solid var(--SmartThemeQuoteColor);">
-                <label class="checkbox_label" for="vectors_master_enabled" title="启用/禁用整个插件的所有功能。禁用时，所有向量化和查询功能都将停止工作。">
-                    <input id="vectors_enhanced_master_enabled" type="checkbox" />
-                    <span style="font-weight: bold; color: var(--SmartThemeQuoteColor);">启用聊天记录超级管理器</span>
-                </label>
-                <small style="display: block; margin-top: 0.25rem; color: var(--SmartThemeEmColor);">
-                    关闭此开关将禁用插件的所有功能，包括向量化、查询和任务管理
-                </small>
-            </div>
-            
-            <!-- 向量化设置部分 -->
-            <div id="vectors_enhanced_main_settings" class="vectors-enhanced-section">
-                <h3>向量化设置</h3>
-                
-                <!-- 启用向量查询 - 移到最上面 -->
-                <label class="checkbox_label" for="vectors_enabled" title="启用/禁用向量查询功能（已向量化的内容不会受影响）">
-                    <input id="vectors_enhanced_enabled" type="checkbox" />
-                    <span>启用向量查询</span>
-                </label>
-                
-                <div class="flex-container flexFlowColumn m-t-0-5">
-                    <label for="vectors_source">
-                        向量化源
-                    </label>
-                    <select id="vectors_enhanced_source" class="text_pole">
-                        <option value="transformers">本地 (Transformers)</option>
-                        <option value="vllm">vLLM</option>
-                        <option value="ollama">Ollama</option>
-                    </select>
-                </div>
 
-                <!-- vLLM 设置 -->
-                <div id="vectors_enhanced_vllm_settings" class="flex-container flexFlowColumn" style="display: none;">
-                    <label for="vectors_vllm_model">
-                        模型名称
-                    </label>
-                    <input id="vectors_enhanced_vllm_model" class="text_pole" type="text" placeholder="例如：intfloat/e5-mistral-7b-instruct" />
-                    
-                    <label for="vectors_vllm_url">
-                        API URL（可选）
-                    </label>
-                    <input id="vectors_enhanced_vllm_url" class="text_pole" type="text" placeholder="留空使用默认vLLM设置" />
-                    <small>
-                        如果未设置，将使用API连接设置中的URL。
-                    </small>
-                </div>
+    <!-- 向量化设置部分 -->
+    <div id="vectors_enhanced_main_settings" class="vectors-enhanced-section">
+      <h3>向量化设置</h3>
 
-                <!-- 本地设置 -->
-                <div id="vectors_enhanced_local_settings" class="flex-container flexFlowColumn">
-                    <label for="vectors_local_model">
-                        模型名称（可选）
-                    </label>
-                    <input id="vectors_enhanced_local_model" class="text_pole" type="text" placeholder="例如：Cohee/jina-embeddings-v2-base-en" />
-                    <small>
-                        留空将使用SillyTavern API页面配置的默认嵌入模型
-                    </small>
-                </div>
+      <!-- 启用向量查询 - 移到最上面 -->
+      <label class="checkbox_label" for="vectors_enabled" title="启用/禁用向量查询功能（已向量化的内容不会受影响）">
+        <input id="vectors_enhanced_enabled" type="checkbox" />
+        <span>启用向量查询</span>
+      </label>
 
-                <!-- Ollama 设置 -->
-                <div id="vectors_enhanced_ollama_settings" class="flex-container flexFlowColumn" style="display: none;">
-                    <label for="vectors_ollama_model">
-                        模型名称
-                    </label>
-                    <input id="vectors_enhanced_ollama_model" class="text_pole" type="text" placeholder="例如：nomic-embed-text" />
-                    
-                    <label for="vectors_ollama_url">
-                        API URL（可选）
-                    </label>
-                    <input id="vectors_enhanced_ollama_url" class="text_pole" type="text" placeholder="http://localhost:11434" />
-                    <small>
-                        留空将使用默认地址 http://localhost:11434。请确保Ollama服务正在运行。
-                    </small>
-                </div>
+      <div class="flex-container flexFlowColumn m-t-0-5">
+        <label for="vectors_source"> 向量化源 </label>
+        <select id="vectors_enhanced_source" class="text_pole">
+          <option value="transformers">本地 (Transformers)</option>
+          <option value="vllm">vLLM</option>
+          <option value="ollama">Ollama</option>
+        </select>
+      </div>
 
-                <hr>
+      <!-- vLLM 设置 -->
+      <div id="vectors_enhanced_vllm_settings" class="flex-container flexFlowColumn" style="display: none">
+        <label for="vectors_vllm_model"> 模型名称 </label>
+        <input
+          id="vectors_enhanced_vllm_model"
+          class="text_pole"
+          type="text"
+          placeholder="例如：intfloat/e5-mistral-7b-instruct"
+        />
 
-                <!-- 通用设置 -->
-                <div class="flex-container">
-                    <div class="flex1" title="向量化的文本块大小">
-                        <label for="vectors_chunk_size">
-                            <small>块大小</small>
-                        </label>
-                        <input id="vectors_enhanced_chunk_size" type="number" class="text_pole" min="100" max="10000" />
-                    </div>
-                    <div class="flex1" title="块之间的重叠百分比">
-                        <label for="vectors_overlap_percent">
-                            <small>重叠 %</small>
-                        </label>
-                        <input id="vectors_enhanced_overlap_percent" type="number" class="text_pole" min="0" max="50" />
-                    </div>
-                    <div class="flex1" title="检索的最小相似度分数">
-                        <label for="vectors_score_threshold">
-                            <small>分数阈值</small>
-                        </label>
-                        <input id="vectors_enhanced_score_threshold" type="number" class="text_pole" min="0" max="1" step="0.05" />
-                    </div>
-                </div>
+        <label for="vectors_vllm_url"> API URL（可选） </label>
+        <input id="vectors_enhanced_vllm_url" class="text_pole" type="text" placeholder="留空使用默认vLLM设置" />
+        <small> 如果未设置，将使用API连接设置中的URL。 </small>
+      </div>
 
-                <div class="flex-container flexFlowColumn">
-                    <label for="vectors_force_chunk_delimiter" title="块边界的自定义分隔符">
-                        <small>自定义块分隔符</small>
-                    </label>
-                    <input id="vectors_enhanced_force_chunk_delimiter" class="text_pole" type="text" placeholder="（可选）" />
-                </div>
+      <!-- Ollama 设置 -->
+      <div id="vectors_enhanced_ollama_settings" class="flex-container flexFlowColumn" style="display: none">
+        <label for="vectors_enhanced_ollama_model">
+          <span data-i18n="Ollama 模型">Ollama 模型</span>
+        </label>
+        <input
+          id="vectors_enhanced_ollama_model"
+          class="text_pole"
+          placeholder="rjmalagon/gte-qwen2-1.5b-instruct-embed-f16"
+        />
 
-                <!-- 查询设置 -->
-                <div class="flex-container m-t-0-5">
-                    <div class="flex1" title="查询时使用最近几条消息的内容">
-                        <label for="vectors_query_messages">
-                            <small>查询消息数</small>
-                        </label>
-                        <input id="vectors_enhanced_query_messages" type="number" class="text_pole" min="1" max="20" />
-                    </div>
-                    <div class="flex1" title="返回的最大相关块数量（仍受分数阈值限制）">
-                        <label for="vectors_max_results">
-                            <small>最大结果数</small>
-                        </label>
-                        <input id="vectors_enhanced_max_results" type="number" class="text_pole" min="1" max="100" />
-                    </div>
-                </div>
+        <label for="vectors_enhanced_ollama_url">
+          <span data-i18n="Ollama URL">Ollama URL</span>
+        </label>
+        <input
+          id="vectors_enhanced_ollama_url"
+          class="text_pole"
+          placeholder="留空将使用默认地址 http://localhost:11434"
+        />
 
-                <hr>
+        <label class="checkbox_label" for="vectors_enhanced_ollama_keep">
+          <input id="vectors_enhanced_ollama_keep" type="checkbox" />
+          <span data-i18n="保持模型在内存中">保持模型在内存中</span>
+        </label>
 
-                <!-- 注入设置 -->
-                <h4>注入设置</h4>
-                
-                <div class="flex-container flexFlowColumn">
-                    <label for="vectors_template">
-                        注入模板
-                    </label>
-                    <textarea id="vectors_enhanced_template" class="text_pole textarea_compact" rows="3" placeholder="使用 {{text}} 指定检索内容的位置"></textarea>
-                </div>
+        <small>
+          模型必须先下载！使用 <code>ollama pull</code> 命令下载模型。<br />
+          提示：在API连接设置中设置Ollama的URL。
+        </small>
+      </div>
 
-                <!-- 内容标签设置 -->
-                <div class="flex-container flexFlowColumn m-t-0-5">
-                    <label>
-                        <small>内容标签（用于区分不同来源的内容）</small>
-                    </label>
-                    <div class="flex-container">
-                        <div class="flex1">
-                            <label for="vectors_tag_chat">
-                                <small>聊天记录</small>
-                            </label>
-                            <input id="vectors_enhanced_tag_chat" class="text_pole" type="text" placeholder="past_chat" />
-                        </div>
-                        <div class="flex1">
-                            <label for="vectors_tag_wi">
-                                <small>世界信息</small>
-                            </label>
-                            <input id="vectors_enhanced_tag_wi" class="text_pole" type="text" placeholder="world_part" />
-                        </div>
-                        <div class="flex1">
-                            <label for="vectors_tag_file">
-                                <small>文件</small>
-                            </label>
-                            <input id="vectors_enhanced_tag_file" class="text_pole" type="text" placeholder="databank" />
-                        </div>
-                    </div>
-                </div>
+      <!-- 本地设置 -->
+      <div id="vectors_enhanced_local_settings" class="flex-container flexFlowColumn">
+        <small> 使用本地Transformers模型进行嵌入 </small>
+      </div>
 
-                <label>注入位置</label>
-                <div class="radio_group">
-                    <label>
-                        <input type="radio" name="vectors_position" value="2" />
-                        <span>主提示前</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="vectors_position" value="0" />
-                        <span>主提示后</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="vectors_position" value="1" />
-                        <span>聊天内@深度</span>
-                        <input id="vectors_enhanced_depth" class="text_pole widthUnset" type="number" min="0" max="999" style="width: 60px;" />
-                        <span>作为</span>
-                        <select id="vectors_enhanced_depth_role" class="text_pole widthNatural">
-                            <option value="0">系统</option>
-                            <option value="1">用户</option>
-                            <option value="2">助手</option>
-                        </select>
-                    </label>
-                </div>
+      <!-- Transformers 设置 -->
+      <div id="vectors_enhanced_transformers_settings" class="flex-container flexFlowColumn">
+        <label for="vectors_enhanced_local_model">
+          <span data-i18n="本地模型">本地模型</span>
+        </label>
+        <input id="vectors_enhanced_local_model" class="text_pole" placeholder="留空使用默认模型" />
+      </div>
 
-                <label class="checkbox_label" for="vectors_include_wi">
-                    <input id="vectors_enhanced_include_wi" type="checkbox" />
-                    <span>包含在世界信息扫描中</span>
-                </label>
+      <hr />
 
-                <label class="checkbox_label" for="vectors_auto_vectorize" title="当聊天内容发生变化时（如发送/接收消息、编辑消息等），自动重新向量化选中的内容。关闭此选项需要手动点击'向量化'按钮。">
-                    <input id="vectors_enhanced_auto_vectorize" type="checkbox" />
-                    <span>更改时自动向量化</span>
-                </label>
-            </div>
-
-            <hr class="m-t-1 m-b-1">
-
-            <!-- 内容选择部分 -->
-            <div id="vectors_enhanced_content_settings" class="vectors-enhanced-section">
-                <h3>内容选择</h3>
-                
-                <!-- 聊天消息 -->
-                <div class="content-type-section">
-                    <label class="checkbox_label" for="vectors_chat_enabled">
-                        <input id="vectors_enhanced_chat_enabled" type="checkbox" />
-                        <span>聊天消息</span>
-                    </label>
-                    
-                    <div id="vectors_enhanced_chat_settings" class="content-settings" style="display: none;">
-                        <div class="flex-container">
-                            <div class="flex1">
-                                <label for="vectors_chat_start">
-                                    <small>从消息 #</small>
-                                </label>
-                                <input id="vectors_enhanced_chat_start" type="number" class="text_pole" min="0" value="0" />
-                            </div>
-                            <div class="flex1">
-                                <label for="vectors_chat_end">
-                                    <small>到消息 # (-1 表示最后)</small>
-                                </label>
-                                <input id="vectors_enhanced_chat_end" type="number" class="text_pole" value="-1" />
-                            </div>
-                        </div>
-                        
-                        <div class="flex-container flexFlowColumn m-t-0-5">
-                            <label>
-                                <small>消息类型</small>
-                            </label>
-                            <label class="checkbox_label">
-                                <input id="vectors_enhanced_chat_user" type="checkbox" checked />
-                                <span>用户消息</span>
-                            </label>
-                            <label class="checkbox_label">
-                                <input id="vectors_enhanced_chat_assistant" type="checkbox" checked />
-                                <span>AI消息</span>
-                            </label>
-                        </div>
-
-                        <div class="flex-container flexFlowColumn m-t-0-5">
-                            <label for="vectors_chat_tags">
-                                <small>标签提取（留空提取全部内容）</small>
-                            </label>
-                            <input id="vectors_enhanced_chat_tags" class="text_pole" type="text" placeholder="例如：context,think（多个标签用逗号分隔）" />
-                            <small class="margin-bottom-10px">
-                                仅提取指定标签内的内容，如 &lt;context&gt;...&lt;/context&gt;
-                            </small>
-                        </div>
-
-                        <!-- 新功能：隐藏消息管理 -->
-                        <div class="flex-container flexFlowColumn m-t-1" style="border-top: 1px dashed var(--SmartThemeQuoteColor); padding-top: 0.5rem;">
-                            <label>
-                                <small><strong>隐藏消息管理</strong></small>
-                            </label>
-                            
-                            <!-- 包含隐藏消息选项 -->
-                            <label class="checkbox_label">
-                                <input id="vectors_enhanced_include_hidden" type="checkbox" />
-                                <span>包含隐藏的消息</span>
-                            </label>
-                            <small class="text-muted margin-bottom-10px">
-                                勾选后，隐藏的消息也会被包含在向量化中
-                            </small>
-                            
-                            <!-- 隐藏/显示按钮 -->
-                            <div class="flex-container m-t-0-5">
-                                <button id="vectors_enhanced_hide_range" class="menu_button menu_button_icon" title="隐藏选定范围的消息">
-                                    <i class="fa-solid fa-eye-slash"></i>
-                                    <span>隐藏消息</span>
-                                </button>
-                                <button id="vectors_enhanced_unhide_range" class="menu_button menu_button_icon" title="显示选定范围的消息">
-                                    <i class="fa-solid fa-eye"></i>
-                                    <span>显示消息</span>
-                                </button>
-                                <button id="vectors_enhanced_show_hidden" class="menu_button menu_button_icon" title="查看当前隐藏的消息">
-                                    <i class="fa-solid fa-list"></i>
-                                    <span>查看隐藏</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr class="m-t-0-5 m-b-0-5">
-
-                <!-- 文件 -->
-                <div class="content-type-section">
-                    <label class="checkbox_label" for="vectors_files_enabled">
-                        <input id="vectors_enhanced_files_enabled" type="checkbox" />
-                        <span>文件</span>
-                    </label>
-                    
-                    <div id="vectors_enhanced_files_settings" class="content-settings" style="display: none;">
-                        <div id="vectors_enhanced_files_list" class="file-list">
-                            <!-- 文件列表将动态填充 -->
-                        </div>
-                        <button id="vectors_enhanced_files_refresh" class="menu_button">
-                            <i class="fa-solid fa-refresh"></i>
-                            <span>刷新文件列表</span>
-                        </button>
-                    </div>
-                </div>
-
-                <hr class="m-t-0-5 m-b-0-5">
-
-                <!-- 世界信息 -->
-                <div class="content-type-section">
-                    <label class="checkbox_label" for="vectors_wi_enabled">
-                        <input id="vectors_enhanced_wi_enabled" type="checkbox" />
-                        <span>世界信息</span>
-                    </label>
-                    
-                    <div id="vectors_enhanced_wi_settings" class="content-settings" style="display: none;">
-                        <div id="vectors_enhanced_wi_list" class="wi-list">
-                            <!-- 世界信息条目将动态填充 -->
-                        </div>
-                        <button id="vectors_enhanced_wi_refresh" class="menu_button">
-                            <i class="fa-solid fa-refresh"></i>
-                            <span>刷新世界信息</span>
-                        </button>
-                    </div>
-                </div>
-
-                <hr class="m-t-1 m-b-1">
-
-                <!-- 向量化任务列表 -->
-                <div id="vectors_enhanced_tasks_settings" class="vectors-enhanced-section">
-                    <h3>向量化任务</h3>
-                    <div id="vectors_enhanced_task_list" class="task-list">
-                        <!-- 任务列表将动态填充 -->
-                    </div>
-                </div>
-
-                <hr class="m-t-1 m-b-1">
-
-                <!-- 操作按钮 -->
-                <div id="vectors_enhanced_actions_settings" class="vectors-enhanced-section">
-                    <div class="vectors-enhanced-actions flex-container">
-                        <button id="vectors_enhanced_preview" class="menu_button menu_button_icon">
-                            <i class="fa-solid fa-eye"></i>
-                            <span>预览</span>
-                        </button>
-                        <button id="vectors_enhanced_export" class="menu_button menu_button_icon">
-                            <i class="fa-solid fa-download"></i>
-                            <span>导出</span>
-                        </button>
-                        <button id="vectors_enhanced_vectorize" class="menu_button menu_button_icon">
-                            <i class="fa-solid fa-vector-square"></i>
-                            <span>向量化</span>
-                        </button>
-                    </div>
-
-                    <div id="vectors_enhanced_progress" class="vectors-enhanced-progress m-t-1" style="display: none;">
-                        <div class="progress-bar">
-                            <div class="progress-bar-inner" style="width: 0%"></div>
-                        </div>
-                        <div class="progress-text">准备中...</div>
-                    </div>
-
-                    <div id="vectors_enhanced_status" class="vectors-enhanced-status m-t-1" style="display: none;">
-                        <!-- 状态消息将在此显示 -->
-                    </div>
-                    
-                </div>
+      <!-- 通用设置 -->
+      <div class="flex-container">
+        <div class="flex1" title="向量化的文本块大小">
+          <label for="vectors_chunk_size">
+            <small>块大小</small>
+          </label>
+          <input id="vectors_enhanced_chunk_size" type="number" class="text_pole" min="100" max="10000" />
         </div>
+        <div class="flex1" title="块之间的重叠百分比">
+          <label for="vectors_overlap_percent">
+            <small>重叠 %</small>
+          </label>
+          <input id="vectors_enhanced_overlap_percent" type="number" class="text_pole" min="0" max="50" />
+        </div>
+        <div class="flex1" title="检索的最小相似度分数">
+          <label for="vectors_score_threshold">
+            <small>分数阈值</small>
+          </label>
+          <input id="vectors_enhanced_score_threshold" type="number" class="text_pole" min="0" max="1" step="0.05" />
+        </div>
+      </div>
+
+      <div class="flex-container flexFlowColumn">
+        <label for="vectors_force_chunk_delimiter" title="块边界的自定义分隔符">
+          <small>自定义块分隔符</small>
+        </label>
+        <input id="vectors_enhanced_force_chunk_delimiter" class="text_pole" type="text" placeholder="（可选）" />
+      </div>
+
+      <!-- 查询设置 -->
+      <div class="flex-container m-t-0-5">
+        <div class="flex1" title="查询时使用最近几条消息的内容">
+          <label for="vectors_query_messages">
+            <small>查询消息数</small>
+          </label>
+          <input id="vectors_enhanced_query_messages" type="number" class="text_pole" min="1" max="20" />
+        </div>
+        <div class="flex1" title="返回的最大相关块数量（仍受分数阈值限制）">
+          <label for="vectors_max_results">
+            <small>最大结果数</small>
+          </label>
+          <input id="vectors_enhanced_max_results" type="number" class="text_pole" min="1" max="100" />
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- 注入设置 -->
+      <h4>注入设置</h4>
+
+      <div class="flex-container flexFlowColumn">
+        <label for="vectors_template"> 注入模板 </label>
+        <textarea
+          id="vectors_enhanced_template"
+          class="text_pole textarea_compact"
+          rows="3"
+          placeholder="使用 {{text}} 指定检索内容的位置"
+        ></textarea>
+      </div>
+
+      <!-- 内容标签设置 -->
+      <div class="flex-container flexFlowColumn m-t-0-5">
+        <label>
+          <small>内容标签（用于区分不同来源的内容）</small>
+        </label>
+        <div class="flex-container">
+          <div class="flex1">
+            <label for="vectors_tag_chat">
+              <small>聊天记录</small>
+            </label>
+            <input id="vectors_enhanced_tag_chat" class="text_pole" type="text" placeholder="past_chat" />
+          </div>
+          <div class="flex1">
+            <label for="vectors_tag_wi">
+              <small>世界信息</small>
+            </label>
+            <input id="vectors_enhanced_tag_wi" class="text_pole" type="text" placeholder="world_part" />
+          </div>
+          <div class="flex1">
+            <label for="vectors_tag_file">
+              <small>文件</small>
+            </label>
+            <input id="vectors_enhanced_tag_file" class="text_pole" type="text" placeholder="databank" />
+          </div>
+        </div>
+      </div>
+
+      <label>注入位置</label>
+      <div class="radio_group">
+        <label>
+          <input type="radio" name="vectors_position" value="2" />
+          <span>主提示前</span>
+        </label>
+        <label>
+          <input type="radio" name="vectors_position" value="0" />
+          <span>主提示后</span>
+        </label>
+        <label>
+          <input type="radio" name="vectors_position" value="1" />
+          <span>聊天内@深度</span>
+          <input
+            id="vectors_enhanced_depth"
+            class="text_pole widthUnset"
+            type="number"
+            min="0"
+            max="999"
+            style="width: 60px"
+          />
+          <span>作为</span>
+          <select id="vectors_enhanced_depth_role" class="text_pole widthNatural">
+            <option value="0">系统</option>
+            <option value="1">用户</option>
+            <option value="2">助手</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="checkbox_label" for="vectors_include_wi">
+        <input id="vectors_enhanced_include_wi" type="checkbox" />
+        <span>包含在世界信息扫描中</span>
+      </label>
+
+      <label
+        class="checkbox_label"
+        for="vectors_auto_vectorize"
+        title="当聊天内容发生变化时（如发送/接收消息、编辑消息等），自动重新向量化选中的内容。关闭此选项需要手动点击'向量化'按钮。"
+      >
+        <input id="vectors_enhanced_auto_vectorize" type="checkbox" />
+        <span>更改时自动向量化</span>
+      </label>
     </div>
+
+    <hr class="m-t-1 m-b-1" />
+
+    <!-- 内容选择部分 -->
+    <div id="vectors_enhanced_content_settings" class="vectors-enhanced-section">
+      <h3>内容选择</h3>
+
+      <!-- 聊天消息 -->
+      <div class="content-type-section">
+        <label class="checkbox_label" for="vectors_chat_enabled">
+          <input id="vectors_enhanced_chat_enabled" type="checkbox" />
+          <span>聊天消息</span>
+        </label>
+
+        <div id="vectors_enhanced_chat_settings" class="content-settings" style="display: none">
+          <div class="flex-container">
+            <div class="flex1">
+              <label for="vectors_chat_start">
+                <small>从消息 #</small>
+              </label>
+              <input id="vectors_enhanced_chat_start" type="number" class="text_pole" min="0" value="0" />
+            </div>
+            <div class="flex1">
+              <label for="vectors_chat_end">
+                <small>到消息 # (-1 表示最后)</small>
+              </label>
+              <input id="vectors_enhanced_chat_end" type="number" class="text_pole" value="-1" />
+            </div>
+          </div>
+
+          <div class="flex-container flexFlowColumn m-t-0-5">
+            <label>
+              <small>消息类型</small>
+            </label>
+            <label class="checkbox_label">
+              <input id="vectors_enhanced_chat_user" type="checkbox" checked />
+              <span>用户消息</span>
+            </label>
+            <label class="checkbox_label">
+              <input id="vectors_enhanced_chat_assistant" type="checkbox" checked />
+              <span>AI消息</span>
+            </label>
+            <label class="checkbox_label">
+              <input id="vectors_enhanced_chat_include_hidden" type="checkbox" />
+              <span>包含隐藏消息</span>
+            </label>
+          </div>
+
+          <div class="flex-container flexFlowColumn m-t-0-5">
+            <label for="vectors_chat_tags">
+              <small>标签提取（支持排除语法，留空提取全部内容）</small>
+            </label>
+            <input
+              id="vectors_enhanced_chat_tags"
+              class="text_pole"
+              type="text"
+              placeholder="例如：content - thinking,analysis"
+            />
+            <div class="text-muted margin-bottom-10px">
+              <p><strong>支持的标签格式：</strong></p>
+              <ul>
+                <li>
+                  <strong>简单标签：</strong> context,thinking （提取 &lt;context&gt;...&lt;/context&gt; 和
+                  &lt;thinking&gt;...&lt;/thinking&gt;）
+                </li>
+                <li>
+                  <strong>复杂条件：</strong> &lt;details&gt;&lt;summary&gt;摘要&lt;/summary&gt;,&lt;/details&gt;
+                  （提取复杂标签嵌套中的内容）
+                </li>
+                <li>
+                  <strong>排除语法：</strong> content - thinking,analysis
+                  （提取content块中除其中的thinking和analysis块内的所有内容）
+                </li>
+                <li>
+                  <strong>正则表达式排除：</strong> content - /&lt;!--[\\s\\S]*?--&gt;/gi （使用正则表达式排除HTML注释）
+                </li>
+                <li>
+                  <strong>混合使用：</strong> content - thinking,/&lt;!--.*?--&gt;/,analysis
+                  （可以组合标签和正则表达式排除）
+                </li>
+              </ul>
+              <p>
+                <strong>注意：</strong>排除语法中的 " - " 用于分隔主标签和要排除的内容，正则表达式格式为 /pattern/flags
+              </p>
+            </div>
+          </div>
+
+          <!-- 内容过滤黑名单 -->
+          <div class="flex-container flexFlowColumn m-t-0-5">
+            <label for="vectors_content_blacklist">
+              <small>内容过滤黑名单（一行一个关键词或短语）</small>
+            </label>
+            <textarea
+              id="vectors_enhanced_content_blacklist"
+              class="text_pole textarea_compact"
+              rows="3"
+              placeholder="Step&#10;思考过程&#10;推理步骤&#10;让我想想"
+            ></textarea>
+            <div class="text-muted margin-bottom-10px">
+              <div><strong>黑名单功能：</strong></div>
+              <div>• 包含这些关键词的提取内容将被跳过</div>
+              <div>• 支持中英文关键词</div>
+              <div>• 与排除语法配合使用：先排除子标签，再进行黑名单过滤</div>
+              <div><small>处理顺序：提取标签 → 排除子标签 → 黑名单过滤</small></div>
+            </div>
+          </div>
+
+          <!-- 隐藏消息管理 -->
+          <div
+            class="flex-container flexFlowColumn m-t-1"
+            style="border-top: 1px dashed var(--SmartThemeQuoteColor); padding-top: 0.5rem"
+          >
+            <label>
+              <small><strong>隐藏消息管理</strong></small>
+            </label>
+
+            <small class="text-muted margin-bottom-10px"> 勾选"包含隐藏消息"后，隐藏的消息也会被包含在向量化中 </small>
+
+            <!-- 隐藏/显示按钮 -->
+            <div class="flex-container m-t-0-5">
+              <button id="vectors_enhanced_hide_range" class="menu_button menu_button_icon" title="隐藏选定范围的消息">
+                <i class="fa-solid fa-eye-slash"></i>
+                <span>隐藏消息</span>
+              </button>
+              <button
+                id="vectors_enhanced_unhide_range"
+                class="menu_button menu_button_icon"
+                title="显示选定范围的消息"
+              >
+                <i class="fa-solid fa-eye"></i>
+                <span>显示消息</span>
+              </button>
+              <button id="vectors_enhanced_show_hidden" class="menu_button menu_button_icon" title="查看当前隐藏的消息">
+                <i class="fa-solid fa-list"></i>
+                <span>查看隐藏</span>
+              </button>
+            </div>
+
+            <!-- 隐藏消息信息显示 -->
+            <div id="vectors_enhanced_hidden_info" class="m-t-0-5" style="display: none">
+              <div class="text-muted">
+                <strong>当前隐藏消息: <span id="vectors_enhanced_hidden_count">0</span> 条</strong>
+              </div>
+              <div id="vectors_enhanced_hidden_list" class="hidden-messages-preview m-t-0-5">
+                <!-- 隐藏消息预览将在此显示 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="m-t-0-5 m-b-0-5" />
+
+      <!-- 文件 -->
+      <div class="content-type-section">
+        <label class="checkbox_label" for="vectors_files_enabled">
+          <input id="vectors_enhanced_files_enabled" type="checkbox" />
+          <span>文件</span>
+        </label>
+
+        <div id="vectors_enhanced_files_settings" class="content-settings" style="display: none">
+          <div id="vectors_enhanced_files_list" class="file-list">
+            <!-- 文件列表将动态填充 -->
+          </div>
+          <button id="vectors_enhanced_files_refresh" class="menu_button">
+            <i class="fa-solid fa-refresh"></i>
+            <span>刷新文件列表</span>
+          </button>
+        </div>
+      </div>
+
+      <hr class="m-t-0-5 m-b-0-5" />
+
+      <!-- 世界信息 -->
+      <div class="content-type-section">
+        <label class="checkbox_label" for="vectors_wi_enabled">
+          <input id="vectors_enhanced_wi_enabled" type="checkbox" />
+          <span>世界信息</span>
+        </label>
+
+        <div id="vectors_enhanced_wi_settings" class="content-settings" style="display: none">
+          <div id="vectors_enhanced_wi_list" class="wi-list">
+            <!-- 世界信息条目将动态填充 -->
+          </div>
+          <button id="vectors_enhanced_wi_refresh" class="menu_button">
+            <i class="fa-solid fa-refresh"></i>
+            <span>刷新世界信息</span>
+          </button>
+        </div>
+      </div>
+
+      <hr class="m-t-1 m-b-1" />
+
+      <!-- 向量化任务列表 -->
+      <div id="vectors_enhanced_tasks_settings" class="vectors-enhanced-section">
+        <h3>向量化任务</h3>
+        <div id="vectors_enhanced_task_list" class="task-list">
+          <!-- 任务列表将动态填充 -->
+        </div>
+      </div>
+
+      <hr class="m-t-1 m-b-1" />
+
+      <!-- 操作按钮 -->
+      <div id="vectors_enhanced_actions_settings" class="vectors-enhanced-section">
+        <div class="vectors-enhanced-actions flex-container">
+          <button id="vectors_enhanced_preview" class="menu_button menu_button_icon">
+            <i class="fa-solid fa-eye"></i>
+            <span>预览</span>
+          </button>
+          <button id="vectors_enhanced_export" class="menu_button menu_button_icon">
+            <i class="fa-solid fa-download"></i>
+            <span>导出</span>
+          </button>
+          <button id="vectors_enhanced_vectorize" class="menu_button menu_button_icon">
+            <i class="fa-solid fa-vector-square"></i>
+            <span>向量化</span>
+          </button>
+        </div>
+
+        <div id="vectors_enhanced_progress" class="vectors-enhanced-progress m-t-1" style="display: none">
+          <div class="progress-bar">
+            <div class="progress-bar-inner" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">准备中...</div>
+        </div>
+
+        <div id="vectors_enhanced_status" class="vectors-enhanced-status m-t-1" style="display: none">
+          <!-- 状态消息将在此显示 -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

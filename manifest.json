@@ -1,15 +1,13 @@
 {
-    "display_name": "聊天记录超级管理器",
-    "loading_order": 5000,
-    "requires": [],
-    "optional": [
-        "embeddings"
-    ],
-    "generate_interceptor": "vectors_rearrangeChat",
-    "js": "index.js",
-    "css": "style.css",
-    "author": "RaphllA",
-    "version": "1.0.2",
-    "homePage": "https://github.com/RaphllA/vectors-enhanced",
-    "description": "增强版向量存储插件，支持多任务管理、自定义内容标签、中文界面、隐藏消息管理等功能。可批量隐藏/显示消息范围，并选择是否包含隐藏消息进行向量化。"
+  "display_name": "聊天记录超级管理器",
+  "loading_order": 5000,
+  "requires": [],
+  "optional": ["embeddings"],
+  "generate_interceptor": "vectors_rearrangeChat",
+  "js": "index.js",
+  "css": "style.css",
+  "author": "RaphllA",
+  "version": "1.0.2",
+  "homePage": "https://github.com/RaphllA/vectors-enhanced",
+  "description": "增强版向量存储插件，支持多任务管理、自定义内容标签、中文界面、隐藏消息管理、高级标签提取、内容过滤黑名单等功能。可批量隐藏/显示消息范围，并选择是否包含隐藏消息进行向量化。"
 }
